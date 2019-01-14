@@ -1,11 +1,16 @@
 #!/bin/sh
 
-listen="0.0.0.0:3000"
-remote=""
-
+echo "LISTENPORT = ${LISTENPORT}"
 echo "REMOTEHOST = ${REMOTEHOST}"
 echo "REMOTEIP   = ${REMOTEIP}"
 echo "REMOTEPORT = ${REMOTEPORT}"
+
+if [ -z "${LISTENPORT}" ];then
+    LISTENPORT=3000
+fi
+
+listen="0.0.0.0:${LISTENPORT}"
+remote=""
 
 if [ -z "${REMOTEIP}" ]; then
     if [ -z "${REMOTEHOST}" ]; then
