@@ -29,10 +29,4 @@ RUN set -ex \
 
 USER root
 
-COPY ./entrypoint.sh /entrypoint.sh
-ENV REMOTEHOST=
-ENV REMOTEIP=
-ENV REMOTEPORT=
-
-
-ENTRYPOINT [ "sh", "/entrypoint.sh" ]
+ENTRYPOINT [ "udp2raw" ]

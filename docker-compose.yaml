@@ -4,13 +4,9 @@ services:
         build: .
         image: xyzrlee/udp2raw
         #restart: unless-stopped
-        ports:
-            - 3901:3000/tcp
+        network_mode: "host"
         cap_add:
             - NET_ADMIN
         volumes:
             - .:/conf:ro
-        environment:
-            - REMOTEHOST=example.com
-            - REMOTEPORT=30000
-        command: -s --conf-file /conf/config.conf
+        command: -s -r 127.0.0.1:3000 -l 127.0.0.1:4000 --conf-file /conf/config.conf
