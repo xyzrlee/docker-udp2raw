@@ -25,12 +25,10 @@ RUN set -ex \
  && cd / \
  && rm -rf /tmp/repo \
  && apk del .build-deps \
- && apk add iptables bind-tools
+ && rm -rf /var/cache/apk/*
 
 USER root
 
 COPY entrypoint.sh /entrypoint.sh
-
-RUN chmod +x entrypoint.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]
