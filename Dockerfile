@@ -29,4 +29,8 @@ RUN set -ex \
 
 USER root
 
-ENTRYPOINT [ "udp2raw" ]
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod +x entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]

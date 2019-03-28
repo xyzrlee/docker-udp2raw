@@ -7,6 +7,4 @@ services:
         network_mode: "host"
         cap_add:
             - NET_ADMIN
-        volumes:
-            - .:/conf:ro
-        command: -s -r 127.0.0.1:3000 -l 127.0.0.1:4000 --conf-file /conf/config.conf
+        command: -s -r 127.0.0.1:3000 -l 127.0.0.1:4000
