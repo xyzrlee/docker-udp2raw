@@ -35,4 +35,7 @@ COPY entrypoint.sh /entrypoint.sh
 
 USER root
 
+RUN set -ex \
+  && udp2raw --help
+
 ENTRYPOINT [ "/entrypoint.sh" ]
