@@ -2,8 +2,7 @@
 # Dockerfile for udp2raw
 #
 
-FROM alpine
-LABEL maintainer="Ricky Li <cnrickylee@gmail.com>"
+FROM alpine AS builder
 
 RUN set -ex \
  # Build environment setup
@@ -27,8 +26,13 @@ RUN set -ex \
  && apk del .build-deps \
  && rm -rf /var/cache/apk/*
 
-USER root
+# ------------------------------------------------
 
+FROM alpine
+
+COPY --from=builder /usr/local/bin/udp2raw /usr/local/bin/udp2raw
 COPY entrypoint.sh /entrypoint.sh
+
+USER root
 
 ENTRYPOINT [ "/entrypoint.sh" ]
