@@ -30,7 +30,7 @@ COPY --from=builder /usr/local/bin/udp2raw /usr/local/bin/udp2raw
 COPY entrypoint.sh /entrypoint.sh
 
 RUN set -ex \
-  && apk add --no-cache libcap \
+  && apk add --no-cache libcap iptables ip6tables \
   && setcap cap_net_raw+ep /usr/local/bin/udp2raw
 
 USER nobody
