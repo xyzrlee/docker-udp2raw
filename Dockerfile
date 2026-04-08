@@ -30,7 +30,7 @@ COPY --from=builder /usr/local/bin/udp2raw /usr/local/bin/udp2raw
 COPY entrypoint.sh /entrypoint.sh
 
 RUN set -ex \
-  && apk add --no-cache libcap iptables ip6tables \
+  && apk add --no-cache libcap iptables ip6tables tini \
   && setcap cap_net_raw+ep /usr/local/bin/udp2raw
 
 USER nobody
@@ -38,5 +38,5 @@ USER nobody
 RUN set -ex \
   && udp2raw --help
 
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT [ "/sbin/tini", "--", "/entrypoint.sh" ]
 

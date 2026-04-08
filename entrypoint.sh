@@ -1,3 +1,6 @@
 #!/bin/sh
 
-udp2raw $@ -g && udp2raw $@
+set -e
+
+exec udp2raw $@ -g && udp2raw $@
+
