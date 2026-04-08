@@ -2,5 +2,7 @@
 
 set -e
 
-exec udp2raw $@ -g && udp2raw $@
+udp2raw $@ -g
+
+exec udp2raw $@
 
