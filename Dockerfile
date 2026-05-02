@@ -2,7 +2,7 @@
 # Dockerfile for udp2raw
 #
 
-FROM alpine AS builder
+FROM --platform=$BUILDPLATFORM alpine AS builder
 
 RUN set -ex \
  # Build environment setup
@@ -24,7 +24,7 @@ RUN set -ex \
 
 # ------------------------------------------------
 
-FROM alpine
+FROM --platform=$BUILDPLATFORM alpine
 
 COPY --from=builder /usr/local/bin/udp2raw /usr/local/bin/udp2raw
 COPY entrypoint.sh /entrypoint.sh
