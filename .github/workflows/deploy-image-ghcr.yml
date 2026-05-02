@@ -31,9 +31,9 @@ jobs:
       with:
         images: ${{github.repository_owner}}/${{env.IMAGE_NAME}}
         tags: |
-          type=raw,pattern=${{env.TAG_CURRENT}}
-          type=raw,pattern=${{env.TAG_LATEST}}
-          type=raw,pattern=${{env.TAG_DEV}}
+          type=raw,value=latest
+          type=raw,value=dev
+          type=raw,value=v{{date 'YYYYMMDD'}}
     - name: docker build push
       uses: docker/build-push-action@v7
       with:
